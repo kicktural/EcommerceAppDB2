@@ -1,0 +1,118 @@
+﻿@model Product
+
+<form method="post" enctype="multipart/form-data">
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#az" type="button" role="tab" aria-controls="home" aria-selected="true">Az</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#ru" type="button" role="tab" aria-controls="profile" aria-selected="false">Ru</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#en" type="button" role="tab" aria-controls="contact" aria-selected="false">En</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="az" role="tabpanel" aria-labelledby="home-tab">
+            <div class="form-group">
+                <input type="text" class="form-control btn btn-outline-primary" name="ProductName" placeholder="Enter product name in az" />
+                <input type="text" class="form-control btn btn-outline-primary" name="Description" placeholder="Enter Description  in az" />
+            </div>
+        </div>
+        <div class="tab-pane fade" id="ru" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="form-group">
+                <input type="text" class="form-control btn btn-outline-primary" name="ProductName" placeholder="Enter product name in Ru" />
+                <input type="text" class="form-control btn btn-outline-primary" name="Description" placeholder="Enter Description  in Ru" />
+            </div>
+        </div>
+        <div class="tab-pane fade" id="en" role="tabpanel" aria-labelledby="contact-tab">
+            <div class="form-group">
+                <input type="text" class="form-control btn btn-outline-primary" name="ProductName" placeholder="Enter product name in Eng" />
+                <input type="text" class="form-control btn btn-outline-primary" name="Description" placeholder="Enter Description  in Eng" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+
+    <input class="form-control btn btn-outline-primary" type="number" name="Price" placeholder="Enter Price" />
+    </div>
+    <div class="form-group">
+
+    <input class="form-control btn btn-outline-primary" type="number" name="Discount" placeholder="Enter Discount" />
+    </div>
+    <div class="form-group">
+
+    <input class="form-control btn btn-outline-primary" type="number"  name="Quantity" placeholder="Enter Quantity" />
+    </div>
+    <div class="form-group">
+       <select class="form-control btn btn-outline-success" name="CategoryId" asp-items="ViewBag.Categoryes"></select>
+    </div>
+    <div class="form-group">
+       <input id="productPicture" multiple type="file" accept="Image/*" name="photoUrls" />
+    </div>
+    <div class="card">
+        <div id="productList" class="row">
+            <div class="col-2">
+                <div class="card p-3">
+                    <img class="img-fluid" src="data:image/jpeg;base64,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" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" class="btn btn-success" value="Create" />
+    <label for="IsFeatured">IsFeatured</label>
+@*    <input type="checkbox"   class="btn btn-success" />*@
+    @* @Html.LabelFor(x =>x.IsFeatured)*@
+     @Html.CheckBoxFor(x =>x.IsFeatured)
+</form>
+
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.min.js" integrity="sha512-fHY2UiQlipUq0dEabSM4s+phmn+bcxSYzXP4vAXItBvBHU7zAM/mkhCZjtBEIJexhOMzZbgFlPLuErlJF2b+0g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+
+        const productPicture = document.getElementById("productPicture");
+        const productList = document.getElementById("productList")
+
+         productPicture.addEventListener('change', function(e){
+
+            console.log(this.files)
+
+            var datas = new FormData();
+
+            for (let i = 0; i < this.files.length; i++){
+                datas.append("photoUrls", productPicture.files[i]);
+            }
+
+            $.ajax({
+              url: '/Picture/UploadPictures',
+              type: "POST",
+              dataType: 'json',
+              contentType: false,
+              processData: false,
+              data: datas,
+              success: function(e){
+                  console.log(e);
+                  CreateCard(e);
+              }
+           });
+        });
+        function CreateCard(photo){
+            for (let i = 0; i < photo.length; i++) {
+                productList.innerHTML +=
+                    ` 
+                    <div class="col-2">
+                        <div class="card p-3">
+                           <img class="img-fluid" name="${photo[i]}" src="${photo[i]}" />
+                               <input type="hidden" value="${photo[i]}" name="PhotoUrls" />
+                          </div>
+                     </div>
+
+                     `                   
+            }
+           
+        }
+
+    </script>
+}
